@@ -16,6 +16,12 @@ S = "${WORKDIR}/${BPN}"
 
 PR = "r1"
 
+do_compile_prepend() {
+    # PO subdir must be in build directory
+    mkdir -p ${B}/po
+    cp -r ${S}/po/* ${B}/po/
+}
+
 ALTERNATIVE_${PN} = "volname eject"
 ALTERNATIVE_LINK_NAME[volname] = "${bindir}/volname"
 ALTERNATIVE_LINK_NAME[eject] = "${bindir}/eject"
